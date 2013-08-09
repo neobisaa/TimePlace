@@ -19,34 +19,35 @@
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
         android:src="@drawable/shest" />
-
+    
     <ImageView
         android:id="@+id/BackGroundWheel2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/BackGroundWheel1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="104dp"
+        android:layout_alignLeft="@+id/BackGroundWheel1"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="102dp"
         android:adjustViewBounds="false"
         android:scaleType="center"
         android:src="@drawable/shest" />
 
     <Button
-        android:id="@+id/singleplayerButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/singleplayerButton"
-        android:layout_centerHorizontal="true"
-        android:text="Singleplayer" />
-    
-        <Button
         android:id="@+id/multiplayerButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/BackGroundWheel2"
-        android:layout_alignLeft="@+id/multiplayerButton"
-        android:layout_alignRight="@+id/multiplayerButton"
-        android:layout_marginBottom="14dp"
+        android:layout_alignLeft="@+id/singleplayerButton"
+        android:layout_alignRight="@+id/singleplayerButton"
+        android:layout_alignTop="@+id/BackGroundWheel1"
+        android:layout_marginTop="15dp"
         android:text="Multiplayer" />
+
+    <Button
+        android:id="@+id/singleplayerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/multiplayerButton"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="77dp"
+        android:text="Singleplayer" />
 
 </RelativeLayout>

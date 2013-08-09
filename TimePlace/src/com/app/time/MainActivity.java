@@ -14,19 +14,23 @@ import android.widget.ImageView;
 
 public class MainActivity extends Activity {	
 	
+	ImageView wheel1, wheel2;
+
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);		
 		
 		// rotate the images
-		ImageView backImg1 = (ImageView) this.findViewById(R.id.BackGroundWheel1);
+		wheel1 = (ImageView) this.findViewById(R.id.BackGroundWheel1);
         Animation rotation = AnimationUtils.loadAnimation(this, R.anim.rotate_around_center);
-        backImg1.startAnimation(rotation);
+        wheel1.startAnimation(rotation);
         
-        ImageView backImg2 = (ImageView) this.findViewById(R.id.BackGroundWheel2);
+        wheel2 = (ImageView) this.findViewById(R.id.BackGroundWheel2);
         Animation rotation2 = AnimationUtils.loadAnimation(this, R.anim.rotate_around_center_counter);
-        backImg2.startAnimation(rotation2);
+        wheel2.startAnimation(rotation2);
         
         // add single play listener
         Button singleplayerButton = (Button) findViewById(R.id.singleplayerButton);
@@ -37,8 +41,14 @@ public class MainActivity extends Activity {
 				Intent questionActivity = new Intent(MainActivity.this, QuestionActivity.class);
 				TimeApplication app = (TimeApplication) getApplicationContext();
 				MainActivity.this.startActivity(questionActivity);
+				
+				// stop animation
+				wheel1.clearAnimation();
+				wheel2.clearAnimation();
 			}
 		});	
+        
+        
         Button multiplayerButton = (Button) findViewById(R.id.multiplayerButton);
 	}
 
@@ -52,3 +62,4 @@ public class MainActivity extends Activity {
 
 	
 }
+

@@ -1,7 +1,10 @@
 package com.app.time;
 
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.app.Application;
 import android.content.res.Configuration;
+import android.util.Log;
 
 import com.app.time.Control.IControl;
 import com.app.time.Data.DBFake;
@@ -38,8 +41,8 @@ public class TimeApplication extends Application implements IControl{
 
 	@Override
 	public void ProcessResult(boolean correct) {
-		// TODO Auto-generated method stub
-		
+		Log.v(Constants.log_string, "Processing result");
+		  
 	}
 
 	@Override
