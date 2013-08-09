@@ -9,29 +9,31 @@
     tools:context=".QuestionActivity" >
 
     <ImageView
-        android:id="@+id/ImageView01"
+        android:id="@+id/entryImg1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageView1"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/entryImg2"
+        android:layout_marginLeft="40dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/shest" />
+
+    <ImageView
+        android:id="@+id/entryImg2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/entryImg1"
         android:layout_centerVertical="true"
+        android:scaleType="centerCrop"
         android:src="@drawable/shest" />
 
     <ImageView
-        android:id="@+id/imageView1"
+        android:id="@+id/entryImg3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/ImageView01"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="17dp"
-        android:src="@drawable/shest" />
-
-    <ImageView
-        android:id="@+id/ImageView02"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/ImageView01"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="18dp"
+        android:layout_above="@+id/entryImg2"
+        android:layout_alignLeft="@+id/entryImg2"
+        android:scaleType="centerCrop"
         android:src="@drawable/shest" />
 
 </RelativeLayout>

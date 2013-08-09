@@ -3,21 +3,22 @@ package com.app.time;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 
-public class MainActivity extends Activity {	
 
+public class MainActivity extends Activity {	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
-			
+		setContentView(R.layout.activity_main);		
+		
 		// rotate the images
 		ImageView backImg1 = (ImageView) this.findViewById(R.id.BackGroundWheel1);
         Animation rotation = AnimationUtils.loadAnimation(this, R.anim.rotate_around_center);
@@ -32,7 +33,9 @@ public class MainActivity extends Activity {
         singleplayerButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				Log.v(Constants.log_string, "Single clicked");
 				Intent questionActivity = new Intent(MainActivity.this, QuestionActivity.class);
+				TimeApplication app = (TimeApplication) getApplicationContext();
 				MainActivity.this.startActivity(questionActivity);
 			}
 		});	
