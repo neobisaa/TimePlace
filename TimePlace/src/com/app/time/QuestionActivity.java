@@ -1,7 +1,9 @@
 package com.app.time;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -75,7 +77,7 @@ public class QuestionActivity extends Activity implements IQuestionView
 		{
 			dialog = new Dialog(this);
 			dialog.setContentView(R.layout.answer_dialog);
-			dialog.setTitle("Correct answer");
+			dialog.setTitle("Wrong! The correct answer is");
 			
 			
 			AddEntry(correctOrder[0], R.id.answerEntryImg1,
@@ -103,7 +105,17 @@ public class QuestionActivity extends Activity implements IQuestionView
 			dialog.show();
 		} else
 		{
-
+			// TODO - add more logic
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setMessage("You are right!")
+			       .setCancelable(false)
+			       .setPositiveButton("Continue", new DialogInterface.OnClickListener() {
+			           public void onClick(DialogInterface dialog, int id) {
+			                finish();
+			           }
+			       });
+			AlertDialog alert = builder.create();
+			alert.show();
 		}
 		
 		
