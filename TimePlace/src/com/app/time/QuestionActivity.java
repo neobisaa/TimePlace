@@ -1,8 +1,7 @@
 package com.app.time;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+import android.app.Dialog;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,8 +10,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.app.time.Data.Question;
@@ -25,6 +24,7 @@ public class QuestionActivity extends Activity implements IQuestionView
 	private int[] correctOrder;
 	private int currentIndex;
 	TimeApplication app;
+	private Dialog dialog;
 
 	private class IndexedCLickListener implements OnClickListener
 	{
@@ -69,24 +69,44 @@ public class QuestionActivity extends Activity implements IQuestionView
 
 		// call Process Results
 		app.ProcessResult(errors == 0);
-		
-		
-		// Show dialog
-		// TODO change to correct answer dialog
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setTitle("Your answer was:")
-				.setMessage((errors == 0) ? "Correct" : "Incorrect")
-				.setCancelable(false)
-				.setNegativeButton("OK", new DialogInterface.OnClickListener()
+
+		// Show error if needed dialog
+		if (errors != 0)
+		{
+			dialog = new Dialog(this);
+			dialog.setContentView(R.layout.answer_dialog);
+			dialog.setTitle("Correct answer");
+			
+			
+			AddEntry(correctOrder[0], R.id.answerEntryImg1,
+					R.id.answerEntryText1, false);
+			AddEntry(correctOrder[1], R.id.answerEntryImg2,
+					R.id.answerEntryText2, false);
+			AddEntry(correctOrder[2], R.id.answerEntryImg3,
+					R.id.answerEntryText3, false);
+
+			Button dialogButton = (Button) dialog
+					.findViewById(R.id.answerDialogButton);
+			// if button is clicked, close the custom dialog
+			dialogButton.setOnClickListener(new OnClickListener()
+			{
+				@Override
+				public void onClick(View v)
 				{
-					public void onClick(DialogInterface dialog, int id)
-					{
-						// close activity
-						finish();
-					}
-				});		
-		AlertDialog alert = builder.create();
-		alert.show();
+					dialog.dismiss();
+					finish();
+				}
+			});
+			
+			
+			
+			dialog.show();
+		} else
+		{
+
+		}
+		
+		
 	}
 
 	public QuestionActivity()
@@ -94,9 +114,9 @@ public class QuestionActivity extends Activity implements IQuestionView
 		Log.v(Constants.log_string, "CTOR QUESTION ACT");
 		pressOrder = new int[3];
 		correctOrder = new int[3];
-		correctOrder[0] = 1;
-		correctOrder[1] = 2;
-		correctOrder[2] = 3;
+		correctOrder[0] = 0;
+		correctOrder[1] = 1;
+		correctOrder[2] = 2;
 		currentIndex = 0;
 	}
 
@@ -119,19 +139,13 @@ public class QuestionActivity extends Activity implements IQuestionView
 		return true;
 	}
 
-	private void setEntry(int index)
-	{
-		ImageView img = (ImageView) findViewById(R.id.entryImg1);
-
-	}
-
 	/**
 	 * Will add entry to the screen
 	 * 
 	 * @param index
-	 *            Entry index - 1:3
+	 *            Entry index - 0:2
 	 */
-	private void AddEntry(int index, int imgID, int textID)
+	private void AddEntry(int index, int imgID, int textID, boolean clickable)
 	{
 		assert (index >= 0);
 		assert (index <= 2);
@@ -149,25 +163,40 @@ public class QuestionActivity extends Activity implements IQuestionView
 		String iconPath = quest.GetEntry(index).getIcon();
 		int imageResource = getResources().getIdentifier(
 				"drawable/" + topic + iconPath, null, getPackageName());
-		ImageView imageView = (ImageView) findViewById(imgID);
+		ImageView imageView;
+		TextView txtView;
+		if(clickable) 
+		{
+		 imageView = (ImageView) findViewById(imgID);
+		 txtView = (TextView) findViewById(textID);
+		}
+		else
+		{
+			 imageView = (ImageView) dialog.findViewById(imgID);
+			 txtView = (TextView) dialog.findViewById(textID);
+		}
 		Drawable image = getResources().getDrawable(imageResource);
 		imageView.setImageDrawable(image);
-		TextView txtView = (TextView) findViewById(textID);
+		
 		txtView.setText(quest.GetEntry(index).getName());
+
 		// add listener
-		imageView.setOnClickListener(new IndexedCLickListener(index));
-	
+		if (clickable)
+		{
+			imageView.setOnClickListener(new IndexedCLickListener(index));
+		}
+
 	}
 
 	@Override
 	public void SetQuestion(Question question)
 	{
 		quest = question;
-		
-		// add entries		
-		AddEntry(0, R.id.entryImg1, R.id.entryText1);
-		AddEntry(1, R.id.entryImg2, R.id.entryText2);
-		AddEntry(2, R.id.entryImg3, R.id.entryText3);
+
+		// add entries
+		AddEntry(0, R.id.entryImg1, R.id.entryText1, true);
+		AddEntry(1, R.id.entryImg2, R.id.entryText2, true);
+		AddEntry(2, R.id.entryImg3, R.id.entryText3, true);
 	}
 
 }

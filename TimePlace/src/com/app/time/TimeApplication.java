@@ -11,6 +11,10 @@ import com.app.time.Data.DBFake;
 import com.app.time.Data.IDBHandler;
 import com.app.time.Data.Question;
 
+/**
+ * Acts as a COntrol for this app
+ * @author San4
+ */
 public class TimeApplication extends Application implements IControl{
 
 	private IDBHandler database;	

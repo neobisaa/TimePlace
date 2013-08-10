@@ -1,48 +1,38 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:layout_width="wrap_content"
+    android:layout_height="fill_parent"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".QuestionActivity" >
-
-    <TextView
-        android:id="@+id/questionText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Select in correct order:"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+    android:weightSum="5" >
 
     <LinearLayout
-        android:id="@+id/entryContainerLayout"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/answerEntriesLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
         android:layout_gravity="center"
+        android:layout_weight="4"
         android:weightSum="3" >
 
         <LinearLayout
-            android:id="@+id/imageLayout1"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:id="@+id/answerEntryLayout1"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
             android:layout_gravity="top|fill_horizontal"
             android:layout_weight="1"
             android:gravity="top"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:paddingLeft="3dip"
+            android:paddingRight="3dip" >
 
             <ImageView
-                android:id="@+id/entryImg1"
+                android:id="@+id/answerEntryImg1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:scaleType="centerCrop"
                 android:src="@drawable/shest" />
 
             <TextView
-                android:id="@+id/entryText1"
+                android:id="@+id/answerEntryText1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -52,24 +42,24 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/imageLayout2"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="top|fill_horizontal"
             android:layout_weight="1"
             android:gravity="top"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:paddingLeft="3dip"
+            android:paddingRight="3dip" >
 
             <ImageView
-                android:id="@+id/entryImg2"
+                android:id="@+id/answerEntryImg2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:scaleType="centerCrop"
                 android:src="@drawable/shest" />
 
             <TextView
-                android:id="@+id/entryText2"
+                android:id="@+id/answerEntryText2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -79,24 +69,24 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/imageLayout3"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="top|fill_horizontal"
             android:layout_weight="1"
             android:gravity="top"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:paddingLeft="3dip"
+            android:paddingRight="3dip" >
 
             <ImageView
-                android:id="@+id/entryImg3"
+                android:id="@+id/answerEntryImg3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:scaleType="centerCrop"
                 android:src="@drawable/shest" />
 
             <TextView
-                android:id="@+id/entryText3"
+                android:id="@+id/answerEntryText3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -105,5 +95,14 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
         </LinearLayout>
     </LinearLayout>
+
+    <Button
+        android:id="@+id/answerDialogButton"
+        style="@style/AppTheme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:text="OK" />
 
 </LinearLayout>
