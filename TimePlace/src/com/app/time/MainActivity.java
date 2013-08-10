@@ -16,8 +16,6 @@ public class MainActivity extends Activity {
 	
 	ImageView wheel1, wheel2;
 
-	
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -43,8 +41,8 @@ public class MainActivity extends Activity {
 				MainActivity.this.startActivity(questionActivity);
 				
 				// stop animation
-				wheel1.clearAnimation();
-				wheel2.clearAnimation();
+				//wheel1.clearAnimation();
+				//wheel2.clearAnimation();
 			}
 		});	
         
